@@ -4,26 +4,50 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfHomeWork17"
-             mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="250"
-             Name="ColorPicker">
+             mc:Ignorable="d"
+             Name="colorPicker"
+             d:DesignWidth="213" d:DesignHeight="79" 
+             MinWidth="213" MinHeight="79">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />          
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Slider Name="redSlider" Minimum="0" Maximum="255" Grid.Row="0" VerticalAlignment="Center"/>
-        <Slider Name="greenSlider" Minimum="0" Maximum="255" Grid.Row="1" VerticalAlignment="Center"/>
-        <Slider Name="blueSlider" Minimum="0" Maximum="255" Grid.Row="2" VerticalAlignment="Center"/>
-        <Rectangle Grid.Column="1" Grid.RowSpan="3" Width="50" Stroke="Black" StrokeThickness="1">
-            <Rectangle.Fill>
-                <SolidColorBrush/>
-            </Rectangle.Fill>
-        </Rectangle>
+        <Border BorderBrush="DimGray" BorderThickness="1" CornerRadius="2"/>
+        <Grid Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="R" FontSize="16" Foreground="red" FontWeight="Bold" Grid.Column="0" Grid.Row="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center" Margin="2"/>
+            <Slider Name="redSlider" Grid.Column="1" Grid.Row="0" Margin="2" 
+                Minimum="0" Maximum="255" MinWidth="100"
+                VerticalAlignment="Center"                
+                Value="{Binding RelativeSource={RelativeSource AncestorType=local:ColorPicker}, Path=MyRed}"/>
+            <TextBlock Text="G" FontSize="16" Foreground="Green" FontWeight="Bold" Grid.Column="0" Grid.Row="1" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center" Margin="2"/>
+            <Slider Name="greenSlider" Grid.Column="1" Grid.Row="1"  Margin="2"
+                Minimum="0" Maximum="255" MinWidth="100"
+                VerticalAlignment="Center" 
+                Value="{Binding RelativeSource={RelativeSource AncestorType=local:ColorPicker}, Path=MyGreen}"/>
+            <TextBlock Text="B" FontSize="16" Foreground="Blue" FontWeight="Bold" Grid.Column="0" Grid.Row="2" 
+                   VerticalAlignment="Center"  
+                   HorizontalAlignment="Center" Margin="2"/>
+            <Slider Name="blueSlider" Grid.Column="1" Grid.Row="2" Margin="2" 
+                Minimum="0" Maximum="255" MinWidth="100"
+                VerticalAlignment="Center" 
+                Value="{Binding RelativeSource={RelativeSource AncestorType=local:ColorPicker}, Path=MyBlue}"/>
+            <Rectangle Grid.Column="2" Grid.RowSpan="3" 
+                   Width="30" Margin="5" StrokeThickness="1" Stroke="DimGray">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="{Binding RelativeSource={RelativeSource AncestorType=local:ColorPicker}, Path=MyColor}"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
     </Grid>
 </UserControl>

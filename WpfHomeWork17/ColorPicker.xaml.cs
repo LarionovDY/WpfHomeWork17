@@ -20,30 +20,44 @@ namespace WpfHomeWork17
     /// </summary>
     public partial class ColorPicker : UserControl
     {
+        //регистрация маршрутизируемого события изменения цвета
+        public static readonly RoutedEvent ColorChangedEvent = EventManager.RegisterRoutedEvent(
+            nameof(ColorChanged),
+            RoutingStrategy.Bubble,
+            typeof(RoutedPropertyChangedEventHandler<Color>),
+            typeof(ColorPicker));        
+
+        //оболочка события для добавления (удаления) обработчиков
+        public event RoutedPropertyChangedEventHandler<Color> ColorChanged
+        {
+            add { AddHandler(ColorChangedEvent, value); }
+            remove { RemoveHandler(ColorChangedEvent, value); }
+        }
+        //регистрация свойства зависимости хранящее цвет (объект Color)
         public static readonly DependencyProperty MyColorProperty = DependencyProperty.Register(
             nameof(MyColor),
             typeof(Color),
             typeof(ColorPicker),
-            new FrameworkPropertyMetadata((Colors.Black), new PropertyChangedCallback(OnColorChanged)));
-
+            new FrameworkPropertyMetadata(Colors.Black, new PropertyChangedCallback(OnColorChanged)));
+        //регистрация свойства зависимости хранящее красную составляющую цвета
         public static readonly DependencyProperty MyRedProperty = DependencyProperty.Register(
             nameof(MyRed),
             typeof(byte),
             typeof(ColorPicker),
             new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
-
+        //регистрация свойства зависимости хранящее зеленую составляющую цвета
         public static readonly DependencyProperty MyGreenProperty = DependencyProperty.Register(
            nameof(MyGreen),
            typeof(byte),
            typeof(ColorPicker),
            new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
-
+        //регистрация свойства зависимости хранящее синюю составляющую цвета
         public static readonly DependencyProperty MyBlueProperty = DependencyProperty.Register(
            nameof(MyBlue),
            typeof(byte),
            typeof(ColorPicker),
            new FrameworkPropertyMetadata(new PropertyChangedCallback(OnColorRGBChanged)));
-
+        //свойства цвета и составляющих
         public Color MyColor
         {
             get => (Color)GetValue(MyColorProperty);
@@ -64,10 +78,10 @@ namespace WpfHomeWork17
 
         public byte MyBlue
         {
-            get => (byte)GetValue(MyGreenProperty);
-            set => SetValue(MyGreenProperty, value);
+            get => (byte)GetValue(MyBlueProperty);
+            set => SetValue(MyBlueProperty, value);
         }
-
+        //метод обратного вызова изменяющий значение MyColor
         private static void OnColorRGBChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ColorPicker colorPicker = (ColorPicker)d;
@@ -80,14 +94,15 @@ namespace WpfHomeWork17
                 color.B = (byte)e.NewValue;
             colorPicker.MyColor = color;
         }
+        //метод обратного вызова изменяющий значение составляющих цвета
 
         private static void OnColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             Color newColor = (Color)e.NewValue;
-            ColorPicker colorpicker = (ColorPicker)d;
-            colorpicker.MyRed = newColor.R;
-            colorpicker.MyGreen = newColor.G;
-            colorpicker.MyBlue = newColor.B;
+            ColorPicker colorPicker = (ColorPicker)d;
+            colorPicker.MyRed = newColor.R;
+            colorPicker.MyGreen = newColor.G;
+            colorPicker.MyBlue = newColor.B;            
         }
         
         public ColorPicker()
