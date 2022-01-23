@@ -25,11 +25,9 @@ namespace WpfHomeWork17
             InitializeComponent();
         }
 
-        private void pic_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
+        private void colorpick_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
         {
-            Color color = new Color();
-            color = e.NewValue;
-            tbx.Text = color.ToString();           
-        }      
+            tbx.Text = e.NewValue.ToString();
+        }
     }
 }

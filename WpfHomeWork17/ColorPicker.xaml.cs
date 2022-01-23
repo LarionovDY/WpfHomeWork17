@@ -22,11 +22,10 @@ namespace WpfHomeWork17
     {
         //регистрация маршрутизируемого события изменения цвета
         public static readonly RoutedEvent ColorChangedEvent = EventManager.RegisterRoutedEvent(
-            nameof(ColorChanged),
-            RoutingStrategy.Bubble,
-            typeof(RoutedPropertyChangedEventHandler<Color>),
-            typeof(ColorPicker));        
-
+                nameof(ColorChanged),
+                RoutingStrategy.Bubble,
+                typeof(RoutedPropertyChangedEventHandler<Color>),
+                typeof(ColorPicker));
         //оболочка события для добавления (удаления) обработчиков
         public event RoutedPropertyChangedEventHandler<Color> ColorChanged
         {
@@ -61,7 +60,7 @@ namespace WpfHomeWork17
         public Color MyColor
         {
             get => (Color)GetValue(MyColorProperty);
-            set => SetValue(MyColorProperty, value);
+            set => SetValue(MyColorProperty, value);            
         }
 
         public byte MyRed
@@ -92,7 +91,7 @@ namespace WpfHomeWork17
                 color.G = (byte)e.NewValue;
             else if (e.Property == MyBlueProperty)
                 color.B = (byte)e.NewValue;
-            colorPicker.MyColor = color;
+            colorPicker.MyColor = color;            
         }
         //метод обратного вызова изменяющий значение составляющих цвета
 
@@ -102,9 +101,9 @@ namespace WpfHomeWork17
             ColorPicker colorPicker = (ColorPicker)d;
             colorPicker.MyRed = newColor.R;
             colorPicker.MyGreen = newColor.G;
-            colorPicker.MyBlue = newColor.B;            
+            colorPicker.MyBlue = newColor.B;
         }
-        
+
         public ColorPicker()
         {
             InitializeComponent();
