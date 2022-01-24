@@ -102,6 +102,9 @@ namespace WpfHomeWork17
             colorPicker.MyRed = newColor.R;
             colorPicker.MyGreen = newColor.G;
             colorPicker.MyBlue = newColor.B;
+            RoutedPropertyChangedEventArgs<Color> eventArgs = new RoutedPropertyChangedEventArgs<Color>(colorPicker.MyColor, newColor);
+            eventArgs.RoutedEvent = ColorChangedEvent;
+            colorPicker.RaiseEvent(eventArgs);
         }
 
         public ColorPicker()
