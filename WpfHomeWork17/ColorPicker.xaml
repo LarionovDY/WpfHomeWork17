@@ -27,25 +27,25 @@
             <Slider Name="redSlider" Grid.Column="1" Grid.Row="0" Margin="2" 
                 Minimum="0" Maximum="255" MinWidth="100"
                 VerticalAlignment="Center"                
-                Value="{Binding RelativeSource={RelativeSource AncestorType=local:ColorPicker}, Path=MyRed}"/>
+                Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=MyRed}"/>
             <TextBlock Text="G" FontSize="16" Foreground="Green" FontWeight="Bold" Grid.Column="0" Grid.Row="1" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Center" Margin="2"/>
             <Slider Name="greenSlider" Grid.Column="1" Grid.Row="1"  Margin="2"
                 Minimum="0" Maximum="255" MinWidth="100"
                 VerticalAlignment="Center" 
-                Value="{Binding RelativeSource={RelativeSource AncestorType=local:ColorPicker}, Path=MyGreen}"/>
+                Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=MyGreen}"/>
             <TextBlock Text="B" FontSize="16" Foreground="Blue" FontWeight="Bold" Grid.Column="0" Grid.Row="2" 
                    VerticalAlignment="Center"  
                    HorizontalAlignment="Center" Margin="2"/>
             <Slider Name="blueSlider" Grid.Column="1" Grid.Row="2" Margin="2" 
                 Minimum="0" Maximum="255" MinWidth="100"
                 VerticalAlignment="Center" 
-                Value="{Binding RelativeSource={RelativeSource AncestorType=local:ColorPicker}, Path=MyBlue}"/>
+                Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=MyBlue}"/>
             <Rectangle Grid.Column="2" Grid.RowSpan="3" 
                    Width="30" Margin="5" StrokeThickness="1" Stroke="DimGray">
                 <Rectangle.Fill>
-                    <SolidColorBrush Color="{Binding RelativeSource={RelativeSource AncestorType=local:ColorPicker}, Path=MyColor}"/>
+                    <SolidColorBrush Color="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=MyColor}"/>
                 </Rectangle.Fill>
             </Rectangle>
         </Grid>
